@@ -36,8 +36,10 @@ class User:
         userdb.append(self)
         self.name = name
         self.email = email
-        self.account = BankAccount()
+        self.accs = 1
+        self.account = [BankAccount()]
         self.id = User.counter
+        
         
     def make_deposit(self, amount):
         # self.account_balance += amount
@@ -65,8 +67,10 @@ class User:
         #     print(self.name+"'s Account #"+str(self.id),'does not have sufficient funds to transfer $'+str(amount))
         return self
     
-    def new_account(self,type):
-        pass
+    def new_account(self):
+        self.accs+=1
+        self.account.append(BankAccount())
+        return self
 
 john = User('John','John@gmail.com')
 
@@ -74,14 +78,25 @@ maggie = User('Margaret','magpie@yahoo.com')
 
 lee = User('Leon','leanmeanmachine@gmail.com')
 
+for each in userdb:
+    for every in each.account:
+        every.deposit(500)
 
+john.new_account().account[1].deposit(1)
+john.new_account().account[2].deposit(3)
+lee.new_account().account[1].deposit(4)
+john.account[1].display_account_info()
 
-john.account.deposit(500).display_account_info()
+for each in userdb:
+    for every in each.account:
+        every.deposit(500)
 
-
-for x in range(len(userdb)):
-    print(f'{userdb[x].name}\'s balance is ${userdb[x].account.balance}')
-
+for x in userdb:
+    if len(x.account) == 1:
+        print(f'{x.name}\'s balance is ${x.account[0].balance}')
+    else:
+        for y in x.account:
+            print(f'{x.name}\'s balance in Account #{y.id} is ${y.balance}')
 
 # john.make_deposit(120).make_deposit(1000).make_withdrawl(655).display_user_balance()
 
