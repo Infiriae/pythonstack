@@ -1,5 +1,4 @@
-people = {}
-accounts = []
+userdb = []
 class BankAccount:
     counter=0
     def __init__(self):
@@ -10,6 +9,7 @@ class BankAccount:
 
     def deposit(self, amount):
         self.balance+=amount
+        #people[f'{self}']
         return self
 
     def withdraw(self, amount):
@@ -33,12 +33,11 @@ class User:
     counter = 0
     def __init__(self, name, email):
         User.counter+=1
-        accounts.append(self)
+        userdb.append(self)
         self.name = name
         self.email = email
         self.account = BankAccount()
         self.id = User.counter
-        people[f'User{self.id}']=(f"{self.name}",f"{self.account.id}")
         
     def make_deposit(self, amount):
         # self.account_balance += amount
@@ -65,23 +64,25 @@ class User:
         # else:
         #     print(self.name+"'s Account #"+str(self.id),'does not have sufficient funds to transfer $'+str(amount))
         return self
+    
+    def new_account(self,type):
+        pass
 
 john = User('John','John@gmail.com')
+
 maggie = User('Margaret','magpie@yahoo.com')
+
 lee = User('Leon','leanmeanmachine@gmail.com')
+
 
 
 john.account.deposit(500).display_account_info()
 
 
-for x in range(len(accounts)):
-    print(accounts[x])
+for x in range(len(userdb)):
+    print(f'{userdb[x].name}\'s balance is ${userdb[x].account.balance}')
 
-print(f'Main list:',people)
-for each in people:
-    print(f'Sub-list:',people[each])
-    for key in people[each]:
-        print(f'Inner key',key)
+
 # john.make_deposit(120).make_deposit(1000).make_withdrawl(655).display_user_balance()
 
 # maggie.make_deposit(10000).make_deposit(3476).make_withdrawl(777).make_withdrawl(777).display_user_balance()
@@ -93,3 +94,5 @@ for each in people:
 # john.transfer_money(lee, 175)
 # lee.display_user_balance()
 # john.display_user_balance()
+
+exit()
