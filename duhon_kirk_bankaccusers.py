@@ -41,12 +41,14 @@ class User:
         self.id = User.counter
         
         
-    def make_deposit(self, amount):
-        # self.account_balance += amount
-        # print(self.name,'has deposited $'+str(amount),'into Account #'+str(self.id))
+    def make_deposit(self, acc, amount):
+        if acc <= self.accs:
+            self.account[acc-1].deposit(amount)
+        else:
+            print("Account not recognized. please choose account (account, amount)")
         return self
 
-    def make_withdrawl(self, amount):
+    def make_withdrawl(self, acc, amount):
         # if self.account_balance > amount:
         #     self.account_balance -= amount
         #     print(self.name,'has withdrawn $'+str(amount),'from Account #'+str(self.id))
@@ -54,17 +56,23 @@ class User:
         #     print(self.name+"'s account only has a $"+str(self.account_balance),'balance, cannot withdraw $'+str(amount))
         return self
 
-    def display_user_balance(self):
-        # print(self.name,'currently has $'+str(self.account_balance),'in Account #'+str(self.id))
+    def display_user_balance(self, acc):
+        if acc <= self.accs:
+            print(f'{self.name}\'s'), self.account[acc-1].display_account_info()
+        else:
+            print("Account not recognized. please choose account (account, amount)")
         return self
 
-    def transfer_money(self, other, amount):
-        # if self.account_balance > amount:
-        #     print(self.name,'has transferred $'+str(amount),'from Account #'+str(self.id),'to Account #'+str(other.id))
-        #     self.account_balance -= amount
-        #     other.account_balance += amount
-        # else:
-        #     print(self.name+"'s Account #"+str(self.id),'does not have sufficient funds to transfer $'+str(amount))
+    def transfer_money(self, acc, tar, tacc, amount):
+        if acc <= self.accs and tacc <= tar.accs:
+            if self.account[acc-1].balance > amount:
+                print(self.name,'has transferred $'+str(amount),'from Account #'+str(self.id),'to Account #'+str(tar.id))
+                self.account[acc-1].balance -= amount
+                tar.account[tacc-1].balance += amount
+            else:
+                print(self.name+"'s Account #"+str(self.id),'does not have sufficient funds to transfer $'+str(amount))
+        else:
+            print("Account not recognized. please choose account (your account, who to give, their account, amount)")
         return self
     
     def new_account(self):
@@ -79,17 +87,20 @@ maggie = User('Margaret','magpie@yahoo.com')
 lee = User('Leon','leanmeanmachine@gmail.com')
 
 for each in userdb:
-    for every in each.account:
-        every.deposit(500)
+    for x in range(len(each.account)):
+        each.make_deposit(x,500)    
 
-john.new_account().account[1].deposit(1)
-john.new_account().account[2].deposit(3)
-lee.new_account().account[1].deposit(4)
-john.account[1].display_account_info()
+john.new_account().make_deposit(2,100)
+john.new_account().make_deposit(3,10)
+lee.new_account().make_deposit(2,4)
+john.transfer_money(1,lee,1,100).make_deposit(1,200)
+
+for z in range(john.accs):
+    john.display_user_balance(z)
 
 for each in userdb:
-    for every in each.account:
-        every.deposit(500)
+    for x in range(len(each.account)):
+        each.make_deposit(x,500)
 
 for x in userdb:
     if len(x.account) == 1:
