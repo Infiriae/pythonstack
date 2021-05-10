@@ -19,5 +19,6 @@ urlpatterns = [
     # path('admin/', admin.sites.urls),         # comment out, or just delete
     # path('', include('app1.urls')),
     path('', include('app2.urls')),
-    path('time/', include('apptime.urls'))
+    path('time/', include('apptime.urls')),
+    path('home/', include('app3.urls'))
     ]
