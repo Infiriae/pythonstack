@@ -18,7 +18,8 @@ from django.urls import path, include           # import include
 urlpatterns = [
     # path('admin/', admin.sites.urls),         # comment out, or just delete
     # path('', include('app1.urls')),
-    path('app2/', include('app2.urls')),
-    path('time/', include('apptime.urls')),
-    path('app3', include('app3.urls'))
+    #path('app2/', include('app2.urls')),
+    #path('time/', include('apptime.urls')),
+    #path('app3/', include('app3.urls')),
+    path('', include('app4.urls'))
     ]

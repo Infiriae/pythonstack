@@ -13,7 +13,7 @@
     <div class="row">
 
         <div class="col-sm border mt-5 p-4">
-    <form action="/result" method="POST">
+    <form action="/submit" method="POST">
         {% csrf_token %}
         <p>Your Name:   <input name="name" type="text"></p>
         <p>Dojo Location:   <select name="loca" type="text">
@@ -29,7 +29,7 @@
         </select>
         </p>
         <p>How much do you hate forms?:
-            <p><input type="radio" name="hate" value="1 not at all"> 1 not at all</p>
+            <p><input type="radio" name="hate" value="1 not at all" checked> 1 not at all</p>
             <p><input type="radio" name="hate" value="2"> 2</p>
             <p><input type="radio" name="hate" value="3"> 3</p>
             <p><input type="radio" name="hate" value="4"> 4</p>
@@ -51,7 +51,9 @@
         <button type="submit">Submit</button>
     </form>
     </div>
-
+    <p>{{ request.session.name }}</p>
+    <p>{{ request.session.lang }}</p>
+    <p>{{ request.session.brows }}</p>
 </div>
 </body>
 </html>

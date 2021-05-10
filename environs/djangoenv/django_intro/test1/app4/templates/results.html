@@ -23,17 +23,16 @@
                 <p>Additional Comments:</p>
             </div>
             <div class="col border">
-                <p> {{name}}.</p>
-                <p> {{loca}}.</p>
-                <p> {{lang}}.</p>
-                <p> {{hate}}.</p>
+                <p> {{request.session.name}}.</p>
+                <p> {{request.session.loca}}.</p>
+                <p> {{request.session.lang}}.</p>
+                <p> {{request.session.hate}}.</p>
                 <p>
-                    {% for each in brows %}
-                    {{each}},
-                    {{brows.len}}
-                    {% endfor %}.
+                    {% for each in request.session.browstyped %}
+                    {{each}}
+                    {% endfor %}
                 </p>
-                <p> {{comm}}</p>
+                <p> {{request.session.comm}}</p>
             </div>
         </div>
         </div>
