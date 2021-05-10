@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+
+</head>
+<body class="container">
+    <div class="row">
+
+        <div class="col-sm border mt-5 p-4">
+    <form action="/doit" method="POST">
+        {% csrf_token %}
+        <p>Your Name:   <input name="name" type="text"></p>
+        <p>Dojo Location:   <select name="loca" type="text">
+            <option>Dallas</option>
+            <option>Houston</option>
+            <option>San Marcos</option>
+            <option>Seattle</option>
+        </select></p>
+        <p>Favorite Language:   <select name="lang" type="text">
+            <option>Python</option>
+            <option>C#</option>
+            <option>Java</option>
+        </select>
+        </p>
+        <p>How much do you hate forms?:
+            <p><input type="radio" name="hate" value="1 not at all"> 1 not at all</p>
+            <p><input type="radio" name="hate" value="2"> 2</p>
+            <p><input type="radio" name="hate" value="3"> 3</p>
+            <p><input type="radio" name="hate" value="4"> 4</p>
+            <p><input type="radio" name="hate" value="5 a lot"> 5 a lot</p>
+        </p>
+        <p>What browsers do you use?:
+            <p>
+                <input type="checkbox" name="brows" value="Edge"> Edge
+                <input type="checkbox" name="brows" value="Chrome"> Chrome
+                <input type="checkbox" name="brows" value="Firefox"> Firefox
+                <input type="checkbox" name="brows" value="Opera"> Opera
+                <input type="checkbox" name="brows" value="Safari"> Safari
+            </p>
+        </p>
+        <p>Additional Comments: </p>
+        <div class="row pb-5">
+            <textarea name="comm" type="text" rows="4"></textarea>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+
+</div>
+</body>
+</html>

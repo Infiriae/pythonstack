@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'app1',
     'app2',
     'apptime',
+    'app3',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
