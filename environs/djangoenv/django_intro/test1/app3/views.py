@@ -7,7 +7,7 @@ def homes(request):
     return render(request, "homes.html")
 
 
-def doit(request):
+def result(request):
     inputs = {
         "name" : request.POST["name"], 
         "lang" : request.POST["lang"], 
