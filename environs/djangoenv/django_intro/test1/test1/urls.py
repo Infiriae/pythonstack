@@ -20,5 +20,5 @@ urlpatterns = [
     # path('', include('app1.urls')),
     path('app2/', include('app2.urls')),
     path('time/', include('apptime.urls')),
-    path('', include('app3.urls'))
+    path('app3', include('app3.urls'))
     ]
