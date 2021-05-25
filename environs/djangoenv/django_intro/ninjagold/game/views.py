@@ -7,8 +7,8 @@ def index(request):
     if request.session['cash'] is None:
         request.session['cash'] = 300
         request.session['count'] = 0
-        request.session['realism'] = [obj]
-        request.session['loge'] = [obj]
+        request.session['realism'] = []
+        request.session['loge'] = []
         request.session['goals'] = 600
     else:
         goals = request.session['goals']
