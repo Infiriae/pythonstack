@@ -1,28 +1,7 @@
 from django.contrib import messages
-
-
-def like(request,id):
-
-    user = User.objects.get(id=request.session["user_logged_in"])
-
-    quote = Quote.objects.get(id=id)
-
-    quote.fans.add(user)
-
-    movie_id = quote.movie.id
-
-    return redirect(f'/quotes/{movie_id})
-
-
-def activity(request):
-
-    context = {
-        user
-
-    }
-
-    return render(request,"activity.html",context)
-
+from django.shortcuts import redirect
+from django.db import models
+import re
 
 class MovieManager(models.Manager):
     def validate(self,postData):
@@ -37,13 +16,6 @@ class MovieManager(models.Manager):
 class Movie(models.Model):
     objects = MovieManager()
 
-def add_movie(request):
-    errors = Movie.objects.validate(request.POST)
-
-    if errors:
-        for error in errors.values()
-            messages.error(request,error)
-        return redirect("/")
 
 class UserManager(models.Manager):
     def validate(self,formData):
@@ -59,6 +31,18 @@ class UserManager(models.Manager):
             errors['password'] = "Password should be at least 2 characters"
         if formData["confirm_password"] != formData['password']:
             errors['confirm_password'] = "Password doesn't match"
+        if not EMAIL_REGEX.match(formData['email']):
+            errors['invalid_email'] = "Invalid Email Address"
+
+        email_check = self.filter(email=formData['email'])
+        if email_check:
+            errors['email_is_use'] = "Email is in use"
+
+        if errors:
+            for error in errors.values()
+                messages.error(request,error)
+            return redirect("/")
+
 
 class User(models.Model):
     first_name = models.CharField(max_length=50)
@@ -66,4 +50,16 @@ class User(models.Model):
     email = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
 
-    objects =
+    objects = UserManager()
+
+
+class Facebook_Post(models.Model):
+    message = models.CharField(max_length=255)
+    poster = models.ForeignKey(User, related_name='user_posts', on_delete=models.CASCADE)
+    likes = models.ManyToManyField(User, related_name='liked_posts')
+    #post_comments
+
+class Comment(models.Model):
+    comment = models.CharField(max_length=255)
+    poster = models.ForeignKey(User, related_name='comments',on_delete=models.CASCADE)
+    facebook_post = models.ForeignKey(Facebook_Post, related_name='post_comments', on_delete=models.CASCADE)

@@ -1,0 +1,14 @@
+.post {
+    background-color: ghostwhite  ;
+    padding: 25px;
+    margin: 25px;
+    border-radius: 25px;
+}
+
+.comment {
+    background-color: grey;
+    padding: 25px;
+    margin: 25px;
+    min-height: 100px;
+    max-height: 
+}
