@@ -1,0 +1,12 @@
+.question,
+.quiztitle {
+    border: 1px solid black;
+}
+
+img {
+    object-fit: scale-down;
+}
+
+p.question {
+    background-color: darkorchid;
+}
