@@ -42,7 +42,7 @@ def register(request):
         pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
 
         user = User.objects.create(first_name=first_name, last_name=last_name, email=email, password=pw_hash)
-
+        user.save()
         request.session['user_id'] = user.id
         request.session['user_name'] = f"{user.first_name} {user.last_name}"
 
