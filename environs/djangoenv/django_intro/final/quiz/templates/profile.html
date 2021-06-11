@@ -35,56 +35,55 @@
                             <a class="nav-link text-white" href="/quiz/profile">Profile</a>
                         </li>
                         <li class="nav-item">
-                            {% if request.session.user.id == None %}
-                            <a class="nav-link text-white" href="/quiz/login">Log in</a> {% endif %} {% if not request.session.user.id == None %}
-                            <a class="nav-link text-white" href="#">Log out</a> {% endif %}
+                            <a class="nav-link disabled text-white" href="#">Disabled</a>
                         </li>
                     </ul>
                 </div>
             </nav>
         </div>
         <div class="col">
-            <p class="text-center pt-3 text-white">Welcome {{user.id}}</p>
+            <p class="text-center pt-3 text-white">Welcome {{user.first_name}}</p>
         </div>
     </div>
     <h1 class="text-center">Internet users! <br>What do they know?<br>Do they know things?<br>Let's find out!</h1>
     <div class="mb-3">
-        <div id="choosecat" class="row d-inline">
-            <label for="cat" class="col-sm">Pick a category?
-                <select class="col-sm" name="cat" id="cat">
-                    <option value="0">Mixed</option>
-                </select>
-            </label>
-            <div class="row">
-                <div class="col">
-                    <button id="go">Start Quiz</button>
-                </div>
-            </div>
+        <div class="col">
+            <form action="/quiz/reg" method="POST">
+                {% csrf_token %}
+                <table class="text-white">
+                    <tr>
+                        <td>Your First Name: </td>
+                        <td><input name="first_name" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Your Last Name:</td>
+                        <td><input name="last_name" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Your E-mail:</td>
+                        <td><input name="email" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td> Your Password:</td>
+                        <td><input name="password" type="password"></td>
+                    </tr>
+                    <tr>
+                        <td> Confirm Password:</td>
+                        <td><input name="confirm_password" type="password"></td>
+                    </tr>
+                </table>
+                <button type="submit">Submit</button>
+            </form>
         </div>
-        <div class="quiztitle row">
-
-        </div>
-    </div>
-    <div class="container display-inline">
-        <div class="row">
-            <div id="jsonfind" class="col">
-
-            </div>
-            <div id="jsonyou" class="col">
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <button id="show1">Reset Page</button>
-            </div>
+        <div class="row mt-4">
             <div class="col">
                 <button id="theme">I don't like the color...</button>
             </div>
-            <div class="col">
-
-            </div>
         </div>
+        <div class="col">
+
+        </div>
+    </div>
     </div>
 </body>
 
